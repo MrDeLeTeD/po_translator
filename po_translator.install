@@ -1,0 +1,13 @@
+<?php 
+
+function po_translator_install(){
+	if(!is_dir($_SERVER['DOCUMENT_ROOT'] . '/' .conf_path(). '/translations'))
+	{
+		if(!mkdir($_SERVER['DOCUMENT_ROOT'] . '/' .conf_path(). '/translations', 0777, true)){
+			drupal_set_message(
+				'Impossible to create <em>translations</em> folder.<br/> Please create <em>' . conf_path(). '/translations' . '</em> folder', 
+				'error'
+			);
+		}
+	}
+}

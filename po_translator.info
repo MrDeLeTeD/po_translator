@@ -1,0 +1,4 @@
+name = PO Translator
+description = Another way to translate 
+package = Multilingual - Internationalization
+core = 7.x

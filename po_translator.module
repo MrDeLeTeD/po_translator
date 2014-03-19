@@ -1,0 +1,32 @@
+<?php
+
+require_once dirname(__FILE__) .  '/vendor/moparser.php';
+
+function __t($string){
+	global $language; 
+	$poFile = conf_path() . '/translations/' . $language->language . '.mo';
+
+	if(is_file($poFile)){
+		/*
+		$pP = new PoParser();
+		$strings = $pP->read($poFile);
+		dpm($strings);
+		if(isset($strings[$string])){
+			return $strings[$string]['msgstr'][0];
+		}else{
+			return $string;
+		}
+		*/
+
+		$mp = new moparser();
+		$strings = $mp->loadTranslationData($poFile, $language->language);
+		//dpm($strings);
+		if(isset($strings[$language->language][$string])){
+			return $strings[$language->language][$string];
+		}else{
+			return $string;
+		}
+	}else{
+		return $string;
+	}
+} 
