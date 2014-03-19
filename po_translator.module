@@ -2,7 +2,7 @@
 
 require_once dirname(__FILE__) .  '/vendor/moparser.php';
 
-function __t($string){
+function __t($string, $args = array()){
 	global $language; 
 	$poFile = conf_path() . '/translations/' . $language->language . '.mo';
 
@@ -22,11 +22,11 @@ function __t($string){
 		$strings = $mp->loadTranslationData($poFile, $language->language);
 		//dpm($strings);
 		if(isset($strings[$language->language][$string])){
-			return $strings[$language->language][$string];
+			return format_string($strings[$language->language][$string], $args);
 		}else{
-			return $string;
+			return format_string($string, $args);
 		}
 	}else{
-		return $string;
+		return format_string($string, $args);
 	}
 } 
